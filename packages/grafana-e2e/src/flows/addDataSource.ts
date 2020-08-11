@@ -110,9 +110,12 @@ export const addDataSource = (config?: Partial<AddDataSourceConfig>): any => {
       }
 
       // @todo remove `wrap` when possible
-      return e2e().wrap({
-        config: fullConfig,
-        id,
-      });
+      return e2e().wrap(
+        {
+          config: fullConfig,
+          id,
+        },
+        { log: false }
+      );
     });
 };

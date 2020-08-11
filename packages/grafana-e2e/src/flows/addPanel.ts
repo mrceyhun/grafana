@@ -107,7 +107,7 @@ export const addPanel = (config?: Partial<AddPanelConfig>): any =>
     }
 
     // @todo remove `wrap` when possible
-    return e2e().wrap({ config: fullConfig });
+    return e2e().wrap({ config: fullConfig }, { log: false });
   });
 
 // @todo this actually returns type `Cypress.Chainable`
@@ -132,7 +132,7 @@ const getOptionsGroup = (name: string) => e2e().get(`.options-group:has([aria-la
 const isOptionsGroupOpen = (name: string): any =>
   requireLocalStorage(`grafana.dashboard.editor.ui.optionGroup[Panel ${name}]`).then(({ defaultToClosed }: any) => {
     // @todo remove `wrap` when possible
-    return e2e().wrap(!defaultToClosed);
+    return e2e().wrap(!defaultToClosed, { log: false });
   });
 
 // @todo this actually returns type `Cypress.Chainable`
@@ -140,10 +140,10 @@ const isOptionsOpen = (): any =>
   getLocalStorage('grafana.dashboard.editor.ui').then((data: any) => {
     if (data) {
       // @todo remove `wrap` when possible
-      return e2e().wrap(data.isPanelOptionsVisible);
+      return e2e().wrap(data.isPanelOptionsVisible, { log: false });
     } else {
       // @todo remove `wrap` when possible
-      return e2e().wrap(true);
+      return e2e().wrap(true, { log: false });
     }
   });
 
